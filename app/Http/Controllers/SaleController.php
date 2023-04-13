@@ -52,6 +52,10 @@ class SaleController extends Controller
                     return $button;
                 })
                 ->rawColumns(['action'])
+                ->with([
+                    'total_sale_amount' => number_format(round($data->sum('total_amount'),2),2),
+                    'total_pending_amount' => number_format(round($data->sum('pending_amount'),2),2),
+                ])
                 ->make(true);
         }
 
