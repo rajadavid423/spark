@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OpenAiController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
@@ -41,6 +42,12 @@ Route::middleware('auth')->group(static function () {
     Route::resource('product', ProductController::class);
     Route::resource('sale', SaleController::class);
     Route::get('get-product-list/{category_id}', [ProductController::class, 'getProductList']);
-});
+
+    Route::get('open-ai/text-completion', [OpenAiController::class, 'textCompletionPage'])->name('open-ai.text-completion');
+    Route::post('open-ai/text-completion', [OpenAiController::class, 'textCompletionApi'])->name('open-ai.text-completion-api');
+    Route::get('open-ai/image-generate', [OpenAiController::class, 'imageGeneratePage'])->name('open-ai.image-generate');
+    Route::post('open-ai/image-generate', [OpenAiController::class, 'imageGenerateApi'])->name('open-ai.image-generate-api');
+    Route::get('open-ai/text-classification', [OpenAiController::class, 'textClassificationPage'])->name('open-ai.text-classification');
+    Route::post('open-ai/text-classification', [OpenAiController::class, 'textClassificationApi'])->name('open-ai.text-classification-api');});
 
 Route::get('student-list', [ProductController::class, 'getStudentList']);
