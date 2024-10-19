@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 
 @section('content')
 
-    <div class="mt-5">
-        <h1 class="mb-5">Laravel Yajra Datatables</h1>
+    <div>
+        <h5 class="mb-3">Employees - Laravel Yajra Datatables</h5>
 
         {{$dataTable->table(['class' => 'table table-bordered'], true)}}
     </div>

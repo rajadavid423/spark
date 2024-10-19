@@ -72,11 +72,17 @@
             </a>
         </li>
         @endcan
-            <li class="nav-item nav_border_style p-2">
-                <a href="{{route('user.index')}}" class="nav-link text-light " aria-selected="false">
-                    <img src="{{ url('images/icons8-employee-64.png') }}" class="mr-2" width="15px"/>Users -Yajra
-                </a>
-            </li>
+
+        <li class="nav-item nav_border_style p-2">
+            <a href="{{route('sale-yajra')}}" class="nav-link text-light " aria-selected="false">
+                <img src="{{ url('images/icons8-bill-32.png') }}" class="mr-2" width="15px"/>Sales -Yajra
+            </a>
+        </li>
+        <li class="nav-item nav_border_style p-2">
+            <a href="{{route('employee-yajra')}}" class="nav-link text-light " aria-selected="false">
+                <img src="{{ url('images/icons8-employee-64.png') }}" class="mr-2" width="15px"/>Employees -Yajra
+            </a>
+        </li>
 
         @canany(['Leave Report', 'Permission Report', 'Call Details Report', 'Allotment Report', 'Sales Report', 'Service Report', 'Employee Report'])
         <li class="nav-item nav_border_style p-2">

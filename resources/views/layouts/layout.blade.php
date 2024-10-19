@@ -219,6 +219,10 @@
 
 @yield('script')
 
+<script src="{{ mix('js/app.js') }}"></script>
+<script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
+@stack('scripts')
+
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     // $("#getFileInfo").on('click', function() {

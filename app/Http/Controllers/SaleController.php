@@ -71,8 +71,16 @@ class SaleController extends Controller
         $categories = ProductCategory::all();
         $products = Product::all();
 
-        $sequenceNo = DB::select('SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = "' . env("DB_DATABASE") . '" AND TABLE_NAME = "sales"');
-        $sequenceNo = collect($sequenceNo)->pluck('AUTO_INCREMENT')[0];
+//        $sequenceNo = DB::select('SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = "' . env("DB_DATABASE") . '" AND TABLE_NAME = "sales"');
+//        $sequenceNo = collect($sequenceNo)->pluck('AUTO_INCREMENT')[0];
+
+        try {
+            DB::statement('SET GLOBAL information_schema_stats_expiry = 0;');
+        } catch (Exception $exception) {
+            info('Error::Place@SaleController@create - ' . $exception->getMessage());
+        }
+        $statement = DB::select("SHOW TABLE STATUS LIKE 'sales'");
+        $sequenceNo = $statement[0]->Auto_increment;
 
         if (strlen((string)$sequenceNo) < 2) {
             $sequenceNo = 'INV00' . $sequenceNo;

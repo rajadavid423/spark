@@ -9,7 +9,7 @@ use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SaleController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\YajraController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -39,17 +39,19 @@ Route::middleware('auth')->group(static function () {
     Route::resource('role', RoleController::class);
     Route::resource('customer', CustomerController::class);
     Route::resource('employee', EmployeeController::class);
-    Route::resource('user', UserController::class);
     Route::resource('product-category', ProductCategoryController::class)->except(['create', 'edit']);
     Route::resource('product', ProductController::class);
     Route::resource('sale', SaleController::class);
     Route::get('get-product-list/{category_id}', [ProductController::class, 'getProductList']);
+    Route::get('sale-yajra', [YajraController::class, 'saleYajra'])->name('sale-yajra');
+    Route::get('employee-yajra', [YajraController::class, 'employeeYajra'])->name('employee-yajra');
 
     Route::get('open-ai/text-completion', [OpenAiController::class, 'textCompletionPage'])->name('open-ai.text-completion');
     Route::post('open-ai/text-completion', [OpenAiController::class, 'textCompletionApi'])->name('open-ai.text-completion-api');
     Route::get('open-ai/image-generate', [OpenAiController::class, 'imageGeneratePage'])->name('open-ai.image-generate');
     Route::post('open-ai/image-generate', [OpenAiController::class, 'imageGenerateApi'])->name('open-ai.image-generate-api');
     Route::get('open-ai/text-classification', [OpenAiController::class, 'textClassificationPage'])->name('open-ai.text-classification');
-    Route::post('open-ai/text-classification', [OpenAiController::class, 'textClassificationApi'])->name('open-ai.text-classification-api');});
+    Route::post('open-ai/text-classification', [OpenAiController::class, 'textClassificationApi'])->name('open-ai.text-classification-api');
+});
 
 Route::get('student-list', [ProductController::class, 'getStudentList']);
