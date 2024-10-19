@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SaleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,7 @@ Route::middleware('auth')->group(static function () {
     Route::resource('role', RoleController::class);
     Route::resource('customer', CustomerController::class);
     Route::resource('employee', EmployeeController::class);
+    Route::resource('user', UserController::class);
     Route::resource('product-category', ProductCategoryController::class)->except(['create', 'edit']);
     Route::resource('product', ProductController::class);
     Route::resource('sale', SaleController::class);

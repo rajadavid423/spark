@@ -31,6 +31,17 @@
                             </thead>
                             <tbody class="small">
                             </tbody>
+                            <tfoot>
+                            <tr class="borderless">
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>
@@ -48,6 +59,7 @@
                 ],
                 processing: true,
                 serverSide: true,
+                lengthMenu: [[10, 25, 50, 100, -1], ['10', '25', '50', '100', 'All']],
                 ajax: {
                     url: '{{ route("sale.index") }}',
                     type: 'GET'
@@ -60,7 +72,33 @@
                     {data: 'pending_amount'},
                     {data: 'payment_due_date'},
                     {data: 'action', orderable: false},
-                ]
+                ],
+                footerCallback: function () {
+                    var api = this.api();
+                    console.log(api)
+                    var json = api.ajax.json();
+                    console.log(json)
+
+                    // converting to integer to find total
+                    var intVal = function (i) {
+                        return typeof i === 'string' ? (i.replace(/[\$,]/g, '') * 1) : (typeof i === 'number' ? i : 0);
+                    };
+
+                    // computing column Total of the complete result
+                    var currentPageInvoiceAmount = api.column(3).data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+
+                    var currentPagePendingAmount = api.column(4).data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+
+                    $(api.column(2).footer()).html('Total');
+                    $(api.column(3).footer()).html((currentPageInvoiceAmount).toFixed(2) + ' of ' + json.total_sale_amount);
+                    $(api.column(4).footer()).html((currentPagePendingAmount).toFixed(2) + ' of ' + json.total_pending_amount);
+                },
             });
         });
     </script>
