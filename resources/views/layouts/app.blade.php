@@ -1,29 +1,29 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+{{--<!doctype html>--}}
+{{--<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">--}}
+{{--<head>--}}
+{{--    <meta charset="utf-8">--}}
+{{--    <meta name="viewport" content="width=device-width, initial-scale=1">--}}
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+{{--    <!-- CSRF Token -->--}}
+{{--    <meta name="csrf-token" content="{{ csrf_token() }}">--}}
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+{{--    <title>{{ config('app.name', 'Laravel') }}</title>--}}
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+{{--    <!-- Scripts -->--}}
+{{--    <script src="{{ asset('js/app.js') }}" defer></script>--}}
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+{{--    <!-- Fonts -->--}}
+{{--    <link rel="dns-prefetch" href="//fonts.gstatic.com">--}}
+{{--    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">--}}
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+{{--    <!-- Font Awesome -->--}}
+{{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />--}}
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-</head>
-<body>
-    <div id="app" class="h-100">
+{{--    <!-- Styles -->--}}
+{{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
+{{--</head>--}}
+{{--<body>--}}
+{{--    <div id="app" class="h-100">--}}
 {{--        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">--}}
 {{--            <div class="container">--}}
 {{--                <a class="navbar-brand" href="{{ url('/') }}">--}}
@@ -78,10 +78,38 @@
 {{--            </div>--}}
 {{--        </nav>--}}
 
-        <main class="" style="background: rgb(0,124,199);
-background: linear-gradient(178deg, rgba(0,124,199,1) 0%, rgb(0,93,199) 50%, rgba(0,49,146,1) 100%);">
-            @yield('content')
-        </main>
-    </div>
+{{--        <main class="" style="background: rgb(0,124,199);--}}
+{{--background: linear-gradient(178deg, rgba(0,124,199,1) 0%, rgb(0,93,199) 50%, rgba(0,49,146,1) 100%);">--}}
+{{--            @yield('content')--}}
+{{--        </main>--}}
+{{--    </div>--}}
+{{--</body>--}}
+{{--</html>--}}
+
+
+    <!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', '') }}</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+
+</head>
+<body>
+
+<div class="container">
+    @yield('content')
+</div>
+
+
+
+<script src="{{ mix('js/app.js') }}"></script>
+<script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
+@stack('scripts')
 </body>
 </html>
