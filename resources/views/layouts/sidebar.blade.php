@@ -11,6 +11,32 @@
                 <img src="{{ url('images/dashboard (1)@2x.png') }}" class="mr-2" width="15px"/>Dashboard
             </a>
         </li>
+        <li class="nav-item nav_border_style p-2">
+            <a href="#" class="nav-link text-light" data-toggle="collapse"
+               data-target="#Settings">
+                <img src="{{ url('images/idea@2x.png') }}" class="mr-2" width="15px"/>Open AI API<i
+                    class="fa-solid fa-angle-down ml-4 pl-2"></i>
+            </a>
+            <div id="Settings" class="collapse">
+                <ul class="nav flex-column mb-0 mx-4">
+                    <li class="nav-item">
+                        <a href="{{ route('open-ai.text-completion')}}" class="nav-link text-light">
+                            Text - Completion
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('open-ai.image-generate')}}" class="nav-link text-light">
+                            Image - Generate
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('open-ai.text-classification')}}" class="nav-link text-light">
+                            Text - Classification
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
         @can('Sales')
             <li class="nav-item nav_border_style p-2">
                 <a href="{{route('sale.index')}}" class="nav-link text-light " aria-selected="false">
